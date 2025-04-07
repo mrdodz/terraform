@@ -75,15 +75,21 @@ resource "proxmox_vm_qemu" "example_vm_name" {
     command = "echo ${self.default_ipv4_address} ${self.name}"
   }
 
-# Example 1 - We could also copy IP/Hostname to file (could be hosts file, ansible inventory, etc)
+# Example 2 - We could also copy IP/Hostname to file (could be hosts file, ansible inventory, etc)
   provisioner "local-exec" {
     when = create
     command = "echo ${self.default_ipv4_address} ${self.name} >> test.txt"
   }
 
+# Example 3 - Run Ansible playbook
+  provisioner "local-exec" {
+    when = create
+    command = "ansible-playbook -i ${self.default_ipv4_address}, your_playbook.yaml"
+  }
+
 }
 
-# Or use `output` outside of "proxmox_vm_qemu" resource
+# Or use `output` outside of "proxmox_vm_qemu" resource to get IP
 # Note the VM name is necessary here
 
 output "proxmox_ip_address_default" {
