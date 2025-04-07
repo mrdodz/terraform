@@ -7,10 +7,10 @@ terraform {
       source  = "telmate/proxmox"
       version = "3.0.1-rc6"
     }
-    gitlab = {
-      source = "gitlabhq/gitlab"
-      version = "~> 17.6.1"
-    }
+#    gitlab = {
+#      source = "gitlabhq/gitlab"
+#      version = "~> 17.6.1"
+#    }
   }
 
   backend "http" {
