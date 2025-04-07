@@ -65,4 +65,28 @@ resource "proxmox_vm_qemu" "example_vm_name" {
     id    = var.serial_id_0
     type  = var.serial_type_socket
   }
+
+# ACTIONABLE ITEMS:
+# When spinning up with DHCP, it would be nice to get the VM's private IP -->
+
+# Example 1 - Echo VM's IP
+  provisioner "local-exec" {
+    when = create
+    command = "echo ${self.default_ipv4_address} ${self.name}"
+  }
+
+# Example 1 - We could also copy IP/Hostname to file (could be hosts file, ansible inventory, etc)
+  provisioner "local-exec" {
+    when = create
+    command = "echo ${self.default_ipv4_address} ${self.name} >> test.txt"
+  }
+
+}
+
+# Or use `output` outside of "proxmox_vm_qemu" resource
+# Note the VM name is necessary here
+
+output "proxmox_ip_address_default" {
+  description = "Current IP Default"
+  value = proxmox_vm_qemu.test-1.*.default_ipv4_address
 }
