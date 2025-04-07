@@ -19,7 +19,7 @@ resource "proxmox_vm_qemu" "example_vm_name" {
   boot        = var.boot_order_scsi0
   onboot      = false                                     # Start VM on proxmox boot
   agent       = 1                                         # Enable QEMU Guest Agent
-  vm_state    = "stopped"
+  vm_state    = "running"
 
 # Cloud-Init stuff
   os_type     = var.os_type_cloud_init
