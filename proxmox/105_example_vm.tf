@@ -84,7 +84,7 @@ resource "proxmox_vm_qemu" "example_vm_name" {
 # Example 3 - Run Ansible playbook
   provisioner "local-exec" {
     when = create
-    command = "ansible-playbook -i ${self.default_ipv4_address}, your_playbook.yaml"
+    command = "ansible-playbook -i ${self.default_ipv4_address}, --private-key ${var.ansible_key_path} your_playbook.yaml"       #Note the comma is required there but haven't tested
   }
 
 }

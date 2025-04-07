@@ -30,6 +30,11 @@ variable "gitlab_token" {
   sensitive = true
 }
 
+variable "ansible_key_path" {
+  type = string
+  sensitive = true
+}
+
 ##################################
 # PROXMOX NODES
 ##################################
