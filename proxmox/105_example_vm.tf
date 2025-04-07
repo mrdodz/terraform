@@ -68,6 +68,7 @@ resource "proxmox_vm_qemu" "example_vm_name" {
 
 # ACTIONABLE ITEMS:
 # When spinning up with DHCP, it would be nice to get the VM's private IP -->
+# Note: vm_state needs to = "running"
 
 # Example 1 - Echo VM's IP
   provisioner "local-exec" {
